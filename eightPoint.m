@@ -32,8 +32,8 @@ if((n1 < 8) || (n2 < 8))
 end
 
 % Arrange data
-p1 = transpose([matchedPoints1(1: 8, :), ones(8, 1)]);
-p2 = transpose([matchedPoints2(1: 8, :), ones(8, 1)]);
+p1 = transpose([matchedPoints1(1: n1, :), ones(n1, 1)]);
+p2 = transpose([matchedPoints2(1: n1, :), ones(n1, 1)]);
 norm1 = getNormMat2d(p1);
 norm2 = getNormMat2d(p2);
 
@@ -50,7 +50,7 @@ x2 = p2(:, 1);
 y2 = p2(:, 2);
 
 % Craft matrix A
-A = [x2 .* x1, x2 .* y1, x2, y2 .* x1, y2 .* y1, y2, x1, y1, ones(8, 1)];
+A = [x2 .* x1, x2 .* y1, x2, y2 .* x1, y2 .* y1, y2, x1, y1, ones(n1, 1)];
 % Perform SVD
 [~, ~, V] = svd(A);
 fMatrix = [V(1, 9), V(2, 9), V(3, 9); V(4, 9), V(5, 9), V(6, 9); V(7, 9), V(8, 9), V(9, 9)];
